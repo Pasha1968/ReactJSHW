@@ -30,9 +30,9 @@ function Catalog() {
     return (
       <ul>
         {items.map(item => (
-          <li key={item.id}>
+          <div key={item.id}>
             {item.name} {item.price}
-          </li>
+          </div>
         ))}
       </ul>
     );

@@ -1,34 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Catalog from "./components/catalog.js"
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import List from './List.js'
+import Bookadd from './components/Bookadd.js'
 
 function App() {
-
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <div className="container pt-3">
-      <div className="row">
-        <div className="col">
-          <h1>Books</h1>
-        </div>
-      </div>
-      <Catalog />
-    </div>
+   <BrowserRouter>
+    <Switch>
+      <Route  exact component={List} path="/"/>
+      <Route  exact component={Bookadd} path="/create"/>
+    </Switch>
+   </BrowserRouter>
   );
 }
 
