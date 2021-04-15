@@ -24,7 +24,6 @@ function List() {
     // </div>
 
     <div className="container pt-3">
-      <Bookadd/>
       <div className="row">
       <NavLink to="/create" >
             <button className="btn btn-primary">CRATE </button>

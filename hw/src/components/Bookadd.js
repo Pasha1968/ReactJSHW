@@ -5,29 +5,42 @@ class Bookadd extends React.Component {
     super(props);
 
     this.state = {
-      title: "",
-      body: "",
-      authorName: "",
+      name: "",
+      author: "",
+      publisher: "",
+      year:"",
+      genreId:1,
     };
+  }
+  go() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+    };
+    fetch('https://localhost:44390/api/BookControler', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState({ postId: data.id }));
   }
   submitHandler = (event) => {
     event.preventDefault();
     const {
-        title,
-        body,
-        authorName
+        name,
+        author,
+        publisher,
+        year,
+        genreId
     } = this.state;
-    let newQuestion = {
-        id: Date.now().toString(),
-        title,
-        body,
-        authorName,
-        counterView: 0,
-        counterAnswers: 0,
-        comments: [],
-        dateTime: new Date(Date.now())
-    }
-    this.setState({title: '', body: '', authorName: ''})
+    console.log(JSON.stringify(this.state));
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+    };
+    fetch('https://localhost:44390/api/BookControler', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState({ postId: data.id }));
+    this.setState({name: '', author: '', publisher: '',year:''})
   };
   changeInputHandler = event => {
     this.setState(prev => ({...prev, ...{
@@ -46,6 +59,7 @@ class Bookadd extends React.Component {
               id="name"
               value={this.state.name}
               name="name"
+              onChange={this.changeInputHandler}
             />
             <label htmlFor="author">author</label>
             <input
@@ -54,6 +68,7 @@ class Bookadd extends React.Component {
               id="name"
               value={this.state.author}
               name="author"
+              onChange={this.changeInputHandler}
             />
             <label htmlFor="publisher">publisher</label>
             <input
@@ -62,6 +77,25 @@ class Bookadd extends React.Component {
               id="name"
               value={this.state.publisher}
               name="publisher"
+              onChange={this.changeInputHandler}
+            />
+            <label htmlFor="year">year</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={this.state.year}
+              name="year"
+              onChange={this.changeInputHandler}
+            />
+            <label htmlFor="genreId">genreId</label>
+            <input
+              type="text"
+              className="form-control"
+              id="genreId"
+              value={this.state.genreId}
+              name="genreId"
+              onChange={this.changeInputHandler}
             />
           </div>
           <button className="btn btn-success">Create</button>
